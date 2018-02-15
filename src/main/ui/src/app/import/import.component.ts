@@ -11,7 +11,8 @@ import {AuthService} from "../auth.service";
 export class ImportComponent implements OnInit {
   successMessage;
   errorMessage;
-  fileToUpload;
+  fileToUpload = null;
+  aliasFileToUpload = null;
 
   constructor(private http: HttpClient,
               private authService: AuthService) {
@@ -24,6 +25,10 @@ export class ImportComponent implements OnInit {
   updateFile($event) {
     console.log("update file event: ", $event);
     this.fileToUpload = $event.target.files[0];
+  }
+  updateAliasFile($event) {
+    console.log("update alias file event: ", $event);
+    this.aliasFileToUpload = $event.target.files[0];
   }
 
   importLicenses() {
@@ -41,7 +46,22 @@ export class ImportComponent implements OnInit {
 
     reader.readAsText(this.fileToUpload);
   }
+  importLicensAliases() {
+    this.successMessage = null;
+    this.errorMessage = null;
 
+    let reader = new FileReader();
+    let uploadAliases = this.uploadAliases;
+    let component = this;
+
+    reader.onloadend = function (file: any) {
+      let contents = file.target.result;
+      uploadAliases(contents, component);
+    };
+
+    reader.readAsText(this.aliasFileToUpload);
+  }
+  
   upload(content, component) {
     component.http.post('/rest/import/licenses', content).subscribe(
       () => {
@@ -50,6 +70,17 @@ export class ImportComponent implements OnInit {
       error => {
         console.log("error", error);
         component.errorMessage = `Failed to import licenses. ${error.message}, ${error.error}`
+      }
+    )
+  }
+  uploadAliases(content, component) {
+    component.http.post('/rest/import/licenses-alias', content).subscribe(
+      () => {
+        component.successMessage = "Successfully imported license aliases";
+      },
+      error => {
+        console.log("error", error);
+        component.errorMessage = `Failed to import license aliases. ${error.message}, ${error.error}`
       }
     )
   }
