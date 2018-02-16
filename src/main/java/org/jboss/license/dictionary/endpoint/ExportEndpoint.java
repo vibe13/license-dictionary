@@ -1,6 +1,8 @@
-package org.jboss.license.dictionary.imports;
+package org.jboss.license.dictionary.endpoint;
 
 import org.jboss.license.dictionary.LicenseStore;
+import org.jboss.license.dictionary.RestApplication;
+import org.jboss.license.dictionary.imports.RhLicense;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -14,7 +16,7 @@ import java.util.Map;
  * @author Michal Szynkiewicz, michal.l.szynkiewicz@gmail.com <br>
  *         Date: 11/21/17
  */
-@Path("/export")
+@Path(RestApplication.REST_VERS_1 + RestApplication.EXPORT_ENDPOINT)
 public class ExportEndpoint {
 
     @Inject
