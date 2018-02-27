@@ -32,6 +32,12 @@ public class LicenseDbStore {
         return license;
     }
 
+    public License update(License license) {
+        log.debug("Updating license: " + license);
+        license = entityManager.merge(license);
+        return license;
+    }
+
     public License getLicense(Integer id) {
         log.debugf("Get license by id:  %d", id);
         return entityManager.find(License.class, id);
@@ -77,5 +83,11 @@ public class LicenseDbStore {
                 log.error(exc);
             }
         });
+    }
+
+    public LicenseApprovalStatus saveLicenseApprovalStatus(LicenseApprovalStatus licenseApprovalStatus) {
+        log.debug("Saving licenseApprovalStatus: " + licenseApprovalStatus);
+        entityManager.persist(licenseApprovalStatus);
+        return licenseApprovalStatus;
     }
 }
