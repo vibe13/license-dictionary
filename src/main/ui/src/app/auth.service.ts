@@ -46,17 +46,17 @@ export class AuthService implements OnInit {
     }
 
     assureLoggedIn() {
-        console.log("checking if logged in");
-        this.initializationObservable.subscribe(() => {
-            if (!this.isAuthenticated()) {
-                this.keycloak.login()
-                    .success(() => null)
-                    .error(e => {
-                        console.log("error", e);
-                        this.router.navigate(["/"])
-                    })  // todo unauthorized page
-            }
-        }
-        );
+//        console.log("checking if logged in");
+//        this.initializationObservable.subscribe(() => {
+//            if (!this.isAuthenticated()) {
+//                this.keycloak.login()
+//                    .success(() => null)
+//                    .error(e => {
+//                        console.log("error", e);
+//                        this.router.navigate(["/"])
+//                    })  // todo unauthorized page
+//            }
+//        }
+//        );
     }
 }

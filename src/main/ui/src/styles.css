@@ -19,3 +19,8 @@
 a {
   cursor: pointer;
 }
+
+.app-background {
+    background-color: #fafafa;
+    color: rgba(0,0,0,.87);
+}

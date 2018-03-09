@@ -4,7 +4,6 @@ import {RouterModule, Routes} from '@angular/router';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 
-
 import {AppComponent} from './app.component';
 import {AuthService} from './auth.service';
 import {ListComponent} from './list/list.component';
@@ -19,7 +18,16 @@ import {ViewComponent} from './view/view.component';
 import { ExistingLicenseCodeValidatorDirective } from './custom-validators/existing-licensecode-validator';
 import { ExistingLicenseFedoraNameValidatorDirective } from './custom-validators/existing-licensefedoraname-validator';
 import { ExistingLicenseSpdxNameValidatorDirective } from './custom-validators/existing-licensesdpxname-validator';
+import { AutofocusDirective } from './custom-validators/autofocus';
+import { SpyDirective } from './custom-validators/mySpy';
 
+
+// Required for https://github.com/Gbuomprisco/ngx-chips
+import { TagInputModule } from 'ngx-chips';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
     { path: '', component: ListComponent },
@@ -29,6 +37,7 @@ const appRoutes: Routes = [
     { path: 'confirm', component: ConfirmationComponent },
     { path: 'import', component: ImportComponent }
 ];
+
 
 @NgModule({
     declarations: [
@@ -40,11 +49,17 @@ const appRoutes: Routes = [
         ViewComponent,
         ExistingLicenseCodeValidatorDirective,
         ExistingLicenseFedoraNameValidatorDirective,
-        ExistingLicenseSpdxNameValidatorDirective
+        ExistingLicenseSpdxNameValidatorDirective,
+        AutofocusDirective,
+        SpyDirective
     ],
     imports: [
+        TagInputModule,
+        //        BrowserAnimationsModule,
         BrowserModule,
+        //                NoopAnimationsModule,
         FormsModule,
+        ReactiveFormsModule,
         HttpClientModule,
         RouterModule.forRoot(appRoutes)
     ],

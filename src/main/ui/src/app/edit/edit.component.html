@@ -162,6 +162,22 @@
 							</div>
 						</div>
 					</div>
+					<div class="form-group">
+						<label for="alias" class="col-sm-2 control-label">Alias</label>
+						<div class="col-sm-10">
+							<tag-input  appAutofocus ngClass="{'no-animate':true}" class="no-animate" ng-class="no-animate"
+							    [(ngModel)]="aliasAsObjects" name="aliasAsObjects"
+								[ngModelOptions]="{standalone: true}" [identifyBy]="'id'"
+								[displayBy]="'aliasName'" [removable]='true' [trimTags]="true"
+								[editable]='false' placeholder="+ Add alias"
+								[animationDuration]="{enter:'0ms',leave:'0ms'}"
+								[allowDupes]="false"
+								[ripple]="false"
+								(onRemove)="onAliasRemoved($event)"
+								(onAdd)="onAliasAdded($event)"></tag-input>
+						</div>
+
+					</div>
 				</div>
 			</div>
 			<div class="form-group text-right">
@@ -174,5 +190,19 @@
 
 			</div>
 		</form>
+
+		<div class="form-group">
+			<label for="alias" class="col-sm-2 control-label">Alias</label>
+			<div class="col-sm-10">
+				<tag-input [(ngModel)]="aliasAsObjects" name="aliasAsObjects"
+					[ngModelOptions]="{standalone: true}" [identifyBy]="'id'"
+					[displayBy]="'aliasName'" [removable]='true' [trimTags]="true"
+					[editable]='false' placeholder="+ Add alias"
+					(onRemove)="onAliasRemoved($event)" (onAdd)="onAliasAdded($event)"></tag-input>
+			</div>
+
+		</div>
 	</div>
 </div>
+
+
